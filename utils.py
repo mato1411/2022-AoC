@@ -190,4 +190,4 @@ def get_input(year: int, day: int) -> str:
 
 
 if __name__ == "__main__":
-    create_dirs_and_templates(overwrite=True)
+    create_dirs_and_templates(overwrite=False)
