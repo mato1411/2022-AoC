@@ -1,11 +1,11 @@
 import json
 import os
+import pathlib
 import shutil
 from heapq import heappop, heappush
 
-import requests
 import numpy as np
-import pathlib
+import requests
 
 up = (-1, 0)
 down = (1, 0)
@@ -74,13 +74,22 @@ def get_directions_possible_of_xy(x, y, x_max, y_max, diag=True):
             directions_possible += [up, down, left]
     else:
         if diag:
-            directions_possible += [up, right, down, left, down_left, down_right, up_right, up_left]
+            directions_possible += [
+                up,
+                right,
+                down,
+                left,
+                down_left,
+                down_right,
+                up_right,
+                up_left,
+            ]
         else:
             directions_possible += [up, right, down, left]
     return directions_possible
 
 
-def read_input(filename='example.txt', sep='\n'):
+def read_input(filename="example.txt", sep="\n"):
     with open(filename) as f:
         inputs = f.read().strip().split(sep)
     return inputs
@@ -167,9 +176,9 @@ def create_dirs_and_templates(overwrite=False):
     for i in range(1, 26):
         d_f_name = str(i).zfill(2)
         os.makedirs(d_f_name, exist_ok=True)
-        py_file = os.path.join(d_f_name, d_f_name + '.py')
-        ex_file = os.path.join(d_f_name, 'example.txt')
-        for s, d in zip(['template.py', 'example.txt'], [py_file, ex_file]):
+        py_file = os.path.join(d_f_name, d_f_name + ".py")
+        ex_file = os.path.join(d_f_name, "example.txt")
+        for s, d in zip(["template.py", "example.txt"], [py_file, ex_file]):
             if overwrite or not os.path.isfile(d):
                 shutil.copyfile(s, d)
 
@@ -177,11 +186,13 @@ def create_dirs_and_templates(overwrite=False):
 def _get_cookies_headers() -> dict[str, dict[str, str]]:
     with open(parent_path / ".env") as f:
         contents = json.loads(f.read().strip())
-    return dict(cookies=contents, headers={"User-Agent": "https://github.com/mato1411/2022-AoC"})
+    return dict(
+        cookies=contents, headers={"User-Agent": "https://github.com/mato1411/2022-AoC"}
+    )
 
 
 def get_input(year: int, day: int) -> str:
-    url = f'https://adventofcode.com/{year}/day/{day}/input'
+    url = f"https://adventofcode.com/{year}/day/{day}/input"
     r = requests.get(url, **_get_cookies_headers())
     print(f"Status code: {r.status_code}")
     with open(parent_path / str(day).zfill(2) / "input.txt", "w") as f:
