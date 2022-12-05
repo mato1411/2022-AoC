@@ -89,9 +89,12 @@ def get_directions_possible_of_xy(x, y, x_max, y_max, diag=True):
     return directions_possible
 
 
-def read_input(filename="example.txt", sep="\n"):
+def read_input(filename="example.txt", strip=True, sep="\n"):
     with open(filename) as f:
-        inputs = f.read().strip().split(sep)
+        if strip:
+            inputs = f.read().strip().split(sep)
+        else:
+            inputs = f.read().split(sep)
     return inputs
 
 
