@@ -2,5 +2,5 @@
 
 https://adventofcode.com/2022
 
-* `utils.py` - Contains utilities to create template dir, download inout files and more
-* `.env` - Create that file containing the cookie following the syntax `{"session": "secret"}`
+* `utils.py` - Contains utilities to create template dir, download input files and more
+* `.env` - Create that file manually containing the cookie required for auth following the syntax `{"session": "secret"}`
