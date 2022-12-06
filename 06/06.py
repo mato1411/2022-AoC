@@ -11,9 +11,19 @@ if not pathlib.Path(input_file).exists():
 
 files = ["example.txt", input_file]
 
+
+def run(list_input: list[str], no_distinct_chars=4):
+    for i in range(0, len(list_input), 1):
+        start_of_pattern = list_input[i : i + no_distinct_chars]
+        if len(set(start_of_pattern)) == no_distinct_chars:
+            return i + no_distinct_chars
+            break
+
+
 for f in files:
-    list_input = read_input(f)
-    print(list_input)
-    result = 0
-    print(f"{f} - Part 1: {result}")
-    print(f"{f} - Part 2: {result}")
+    for line in read_input(f):
+        print(line)
+        p1 = run(line)
+        p2 = run(line, 14)
+        print(f"{f} - Part 1: {p1}")
+        print(f"{f} - Part 2: {p2}")
