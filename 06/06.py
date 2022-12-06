@@ -17,7 +17,6 @@ def run(list_input: list[str], no_distinct_chars=4):
         start_of_pattern = list_input[i : i + no_distinct_chars]
         if len(set(start_of_pattern)) == no_distinct_chars:
             return i + no_distinct_chars
-            break
 
 
 for f in files:
