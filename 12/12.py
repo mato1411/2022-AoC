@@ -17,7 +17,7 @@ def a_star_no_heuristic(a, start, end):
     while not_visited:
         step, height, node = heappop(not_visited)
         if node in end:
-            return parents[node]
+            return parents[node], step
         for neighbor, n_height in get_adjacent_data(a, node).items():
             new_height = parents[node] + 1
             if n_height <= height + 1:
