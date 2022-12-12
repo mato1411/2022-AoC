@@ -100,8 +100,8 @@ def read_input(filename="example.txt", strip=True, sep="\n"):
 
 def get_adjacent_data(a, node):
     x, y = node
-    x_max = a.shape[0]
-    y_max = a.shape[1]
+    x_max = len(a) if isinstance(a, list) else a.shape[1]
+    y_max = len(a[0]) if isinstance(a, list) else a.shape[1]
     dirs = get_directions_possible_of_xy(x, y, x_max, y_max, diag=False)
     adjacent_data = {}
     for d in dirs:
